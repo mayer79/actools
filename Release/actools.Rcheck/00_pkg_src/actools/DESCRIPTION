@@ -1,0 +1,17 @@
+Package: actools
+Title: Tools for actuarial science
+Version: 1.0.0
+Authors@R: person('Michael', 'Mayer', email = 'mayermichael79@gmail.com', role = c('aut', 'cre', 'cph'))
+Description: A collection of tools for actuarial science.
+Depends: R (>= 3.5.0)
+License: GPL(>= 3)
+Encoding: UTF-8
+LazyData: true
+Type: Package
+Date: 2019-06-02
+Imports: stats, magrittr, dplyr, tibble, tidyr
+Author: Michael Mayer [aut, cre, cph]
+Maintainer: Michael Mayer <mayermichael79@gmail.com>
+RoxygenNote: 6.1.1
+NeedsCompilation: no
+Packaged: 2019-06-02 14:13:16 UTC; Michael

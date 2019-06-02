@@ -1,0 +1,275 @@
+
+R version 3.5.3 (2019-03-11) -- "Great Truth"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "actools"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> options(pager = "console")
+> base::assign(".ExTimings", "actools-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
+> library('actools')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("coefTables")
+> ### * coefTables
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: coefTables
+> ### Title: From lm object, extract nice coefficient tables
+> ### Aliases: coefTables
+> 
+> ### ** Examples
+> 
+> CO2[["conc"]] <- factor(CO2[["conc"]])
+> fit <- lm(uptake ~ Type + Type:Treatment:conc, data = CO2)
+> coefTables(fit)
+$`(Intercept)`
+(Intercept) 
+   40.83333 
+
+$Type
+         Type factor
+1      Quebec    0.0
+2 Mississippi  -22.1
+
+$`Type:Treatment:conc`
+          Type  Treatment conc      factor
+1       Quebec nonchilled   95 -25.5666667
+2  Mississippi nonchilled   95  -7.4333333
+3       Quebec    chilled   95 -27.9666667
+4  Mississippi    chilled   95  -9.1333333
+5       Quebec nonchilled  175 -10.8000000
+6  Mississippi nonchilled  175   1.4666667
+7       Quebec    chilled  175 -16.7000000
+8  Mississippi    chilled  175  -3.9666667
+9       Quebec nonchilled  250  -3.4333333
+10 Mississippi nonchilled  250   8.8000000
+11      Quebec    chilled  250  -6.3666667
+12 Mississippi    chilled  250  -2.6333333
+13      Quebec nonchilled  350  -0.4666667
+14 Mississippi nonchilled  350  11.1666667
+15      Quebec    chilled  350  -5.0333333
+16 Mississippi    chilled  350  -2.1333333
+17      Quebec nonchilled  500  -1.2333333
+18 Mississippi nonchilled  500  11.8666667
+19      Quebec    chilled  500  -4.1666667
+20 Mississippi    chilled  500  -2.1000000
+21      Quebec nonchilled  675   0.6666667
+22 Mississippi nonchilled  675  11.8000000
+23      Quebec    chilled  675  -3.3333333
+24 Mississippi    chilled  675  -0.4666667
+25      Quebec nonchilled 1000   2.3333333
+26 Mississippi nonchilled 1000  12.8666667
+27      Quebec    chilled 1000   0.0000000
+28 Mississippi    chilled 1000   0.0000000
+
+attr(,"class")
+[1] "coefTable"
+attr(,"matrix")
+[1] FALSE
+> coefTables(fit, rebase = TRUE)
+$`(Intercept)`
+(Intercept) 
+   15.26667 
+
+$Type
+         Type factor
+1      Quebec    0.0
+2 Mississippi  -22.1
+
+$`Type:Treatment:conc`
+          Type  Treatment conc    factor
+1       Quebec nonchilled   95  0.000000
+2  Mississippi nonchilled   95 18.133333
+3       Quebec    chilled   95 -2.400000
+4  Mississippi    chilled   95 16.433333
+5       Quebec nonchilled  175 14.766667
+6  Mississippi nonchilled  175 27.033333
+7       Quebec    chilled  175  8.866667
+8  Mississippi    chilled  175 21.600000
+9       Quebec nonchilled  250 22.133333
+10 Mississippi nonchilled  250 34.366667
+11      Quebec    chilled  250 19.200000
+12 Mississippi    chilled  250 22.933333
+13      Quebec nonchilled  350 25.100000
+14 Mississippi nonchilled  350 36.733333
+15      Quebec    chilled  350 20.533333
+16 Mississippi    chilled  350 23.433333
+17      Quebec nonchilled  500 24.333333
+18 Mississippi nonchilled  500 37.433333
+19      Quebec    chilled  500 21.400000
+20 Mississippi    chilled  500 23.466667
+21      Quebec nonchilled  675 26.233333
+22 Mississippi nonchilled  675 37.366667
+23      Quebec    chilled  675 22.233333
+24 Mississippi    chilled  675 25.100000
+25      Quebec nonchilled 1000 27.900000
+26 Mississippi nonchilled 1000 38.433333
+27      Quebec    chilled 1000 25.566667
+28 Mississippi    chilled 1000 25.566667
+
+attr(,"class")
+[1] "coefTable"
+attr(,"matrix")
+[1] FALSE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("coefTables", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("mae")
+> ### * mae
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: mae
+> ### Title: Calculates mean absolute error
+> ### Aliases: mae
+> 
+> ### ** Examples
+> 
+> mae(1:10, 2:11)
+[1] 1
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("mae", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("perf")
+> ### * perf
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: perf
+> ### Title: Calculates different performance measures
+> ### Aliases: perf
+> 
+> ### ** Examples
+> 
+> perf(1:10, (1:10)^2, q = c(1, 5, 100))
+   lab  n mae Prop_1 Prop_5 Prop_100
+1 perf 10  33    0.1    0.2        1
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("perf", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("predict.coefTable")
+> ### * predict.coefTable
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: predict.coefTable
+> ### Title: Predicted values based on 'coefTable' object.
+> ### Aliases: predict.coefTable
+> 
+> ### ** Examples
+> 
+> CO2[["conc"]] <- factor(CO2[["conc"]])
+> fit <- lm(uptake ~ Type:Treatment + conc:Treatment + Type:conc, data = CO2)
+> coefT <- coefTables(fit, rebase = TRUE)
+> predict(fit, head(CO2))
+Warning in predict.lm(fit, head(CO2)) :
+  prediction from a rank-deficient fit may be misleading
+       1        2        3        4        5        6 
+13.45238 28.27738 37.88571 40.91071 40.71905 41.92738 
+> predict(coefT, head(CO2))
+[1] 13.45238 28.27738 37.88571 40.91071 40.71905 41.92738
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("predict.coefTable", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("propWithin")
+> ### * propWithin
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: propWithin
+> ### Title: Calculates proportion of predictions within range of observed
+> ###   values
+> ### Aliases: propWithin
+> 
+> ### ** Examples
+> 
+> propWithin(1:10, (1:10)^2, q = c(1, 5, 100))
+  Prop_1   Prop_5 Prop_100 
+     0.1      0.2      1.0 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("propWithin", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("rmse")
+> ### * rmse
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: rmse
+> ### Title: Calculates root mean squared error of prediction
+> ### Aliases: rmse
+> 
+> ### ** Examples
+> 
+> rmse(1:10, 2:11)
+[1] 1
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("rmse", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.47 0.06 0.56 NA NA 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

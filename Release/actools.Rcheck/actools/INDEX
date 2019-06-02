@@ -1,0 +1,8 @@
+coefTables              From lm object, extract nice coefficient tables
+mae                     Calculates mean absolute error
+perf                    Calculates different performance measures
+predict.coefTable       Predicted values based on 'coefTable' object.
+propWithin              Calculates proportion of predictions within
+                        range of observed values
+rmse                    Calculates root mean squared error of
+                        prediction
