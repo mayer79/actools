@@ -54,8 +54,8 @@ Type 'q()' to quit R.
 > fit <- lm(uptake ~ Type + Type:Treatment:conc, data = CO2)
 > coefTables(fit)
 $`(Intercept)`
-  effect 
-40.83333 
+    effect
+1 40.83333
 
 $Type
          Type effect
@@ -99,8 +99,8 @@ attr(,"matrix")
 [1] FALSE
 > coefTables(fit, rebase = TRUE)
 $`(Intercept)`
-  effect 
-15.26667 
+    effect
+1 15.26667
 
 $Type
          Type effect
@@ -263,7 +263,7 @@ Warning in predict.lm(fit, head(CO2)) :
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.46 0.06 0.56 NA NA 
+Time elapsed:  0.54 0.05 0.57 NA NA 
 > grDevices::dev.off()
 null device 
           1 

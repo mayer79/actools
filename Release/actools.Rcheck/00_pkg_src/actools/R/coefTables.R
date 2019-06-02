@@ -27,7 +27,7 @@ coefTables <- function(object, rebase = FALSE) {
  
   out <- dummy.coef(object)
   refLevels <- as.data.frame(lapply(object$xlevels, `[[`, 1), check.names = FALSE)
-  out[["(Intercept)"]] <- setNames(out[["(Intercept)"]], "effect")
+  out[["(Intercept)"]] <- data.frame(effect = out[["(Intercept)"]], row.names = NULL)
   
   for (nm in setdiff(names(out), "(Intercept)")) { # nm <- "Type:conc"
     xx <- out[[nm]] %>% 
@@ -91,5 +91,5 @@ predict.coefTable <- function(object, newdata, trafo = I, ...) {
   nms <- setdiff(names(object), "(Intercept)")
   effectList <- lapply(object[nms], fn)
   stopifnot(var(sapply(effectList, length)) == 0)
-  trafo(Reduce(`+`, effectList, init = object[["(Intercept)"]]), ...)
+  trafo(Reduce(`+`, effectList, init = object[["(Intercept)"]][, "effect"]), ...)
 }
