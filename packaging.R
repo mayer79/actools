@@ -42,7 +42,7 @@ check(pkg, document = FALSE, manual = TRUE, check_dir = dirname(normalizePath(pk
 
 # tar and zip file plus check
 build(pkg, manual = TRUE) # tar
-# build(pkg, binary = TRUE) # zip
+build(pkg, binary = TRUE) # zip
 
 # Install the package (locally)
 install(pkg) # tar

@@ -27,23 +27,24 @@ coefTables <- function(object, rebase = FALSE) {
  
   out <- dummy.coef(object)
   refLevels <- as.data.frame(lapply(object$xlevels, `[[`, 1), check.names = FALSE)
+  out[["(Intercept)"]] <- setNames(out[["(Intercept)"]], "effect")
   
   for (nm in setdiff(names(out), "(Intercept)")) { # nm <- "Type:conc"
     xx <- out[[nm]] %>% 
       as.data.frame %>% 
-      setNames("factor") %>% 
+      setNames("effect") %>% 
       rownames_to_column %>% 
       separate_("rowname", into = unlist(strsplit(nm, ":")), ":")
     
-    stopifnot(setdiff(colnames(xx), "factor") %in% names(refLevels))
+    stopifnot(setdiff(colnames(xx), "effect") %in% names(refLevels))
     
     if (rebase) {
       suppressWarnings(suppressMessages(
         baseLvl <- xx %>% 
           inner_join(refLevels) %>% 
-          pull(factor)
+          pull(effect)
       ))
-      xx[["factor"]] <- xx[["factor"]] - baseLvl
+      xx[["effect"]] <- xx[["effect"]] - baseLvl
       out[["(Intercept)"]] <- out[["(Intercept)"]] + baseLvl
     }
       
@@ -83,12 +84,12 @@ predict.coefTable <- function(object, newdata, trafo = I, ...) {
     suppressWarnings(suppressMessages(
       newdata %>% 
         left_join(cT) %>% 
-        pull(factor)
+        pull(effect)
     ))
   }
   
   nms <- setdiff(names(object), "(Intercept)")
-  factorList <- lapply(object[nms], fn)
-  stopifnot(var(sapply(factorList, length)) == 0)
-  trafo(Reduce(`+`, factorList, init = object[["(Intercept)"]]), ...)
+  effectList <- lapply(object[nms], fn)
+  stopifnot(var(sapply(effectList, length)) == 0)
+  trafo(Reduce(`+`, effectList, init = object[["(Intercept)"]]), ...)
 }

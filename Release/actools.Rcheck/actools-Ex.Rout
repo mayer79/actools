@@ -54,16 +54,16 @@ Type 'q()' to quit R.
 > fit <- lm(uptake ~ Type + Type:Treatment:conc, data = CO2)
 > coefTables(fit)
 $`(Intercept)`
-(Intercept) 
-   40.83333 
+  effect 
+40.83333 
 
 $Type
-         Type factor
+         Type effect
 1      Quebec    0.0
 2 Mississippi  -22.1
 
 $`Type:Treatment:conc`
-          Type  Treatment conc      factor
+          Type  Treatment conc      effect
 1       Quebec nonchilled   95 -25.5666667
 2  Mississippi nonchilled   95  -7.4333333
 3       Quebec    chilled   95 -27.9666667
@@ -99,16 +99,16 @@ attr(,"matrix")
 [1] FALSE
 > coefTables(fit, rebase = TRUE)
 $`(Intercept)`
-(Intercept) 
-   15.26667 
+  effect 
+15.26667 
 
 $Type
-         Type factor
+         Type effect
 1      Quebec    0.0
 2 Mississippi  -22.1
 
 $`Type:Treatment:conc`
-          Type  Treatment conc    factor
+          Type  Treatment conc    effect
 1       Quebec nonchilled   95  0.000000
 2  Mississippi nonchilled   95 18.133333
 3       Quebec    chilled   95 -2.400000
@@ -181,8 +181,8 @@ attr(,"matrix")
 > ### ** Examples
 > 
 > perf(1:10, (1:10)^2, q = c(1, 5, 100))
-   lab  n mae Prop_1 Prop_5 Prop_100
-1 perf 10  33    0.1    0.2        1
+   lab  n mae Prop_1 Prop_5 Prop_100 min max
+1 perf 10  33    0.1    0.2        1 -90   0
 > 
 > 
 > 
@@ -263,7 +263,7 @@ Warning in predict.lm(fit, head(CO2)) :
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.47 0.06 0.56 NA NA 
+Time elapsed:  0.46 0.06 0.56 NA NA 
 > grDevices::dev.off()
 null device 
           1 

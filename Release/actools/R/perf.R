@@ -80,7 +80,9 @@ perf <- function(y, pred, lab = "perf", q = c(0.01, 0.02, 0.05, 0.1)) {
   data.frame(lab = if (!is.null(lab)) lab,
              n = length(y),
              mae = mae(y = y, pred = pred),
-             t(propWithin(y = y, pred = pred, q = q)))
+             t(propWithin(y = y, pred = pred, q = q)),
+             min = min(y - pred),
+             max = max(y - pred))
 }
 
 
