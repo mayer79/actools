@@ -7,7 +7,7 @@
 #' @importFrom dplyr inner_join pull
 #'
 #' @description Turns an lm object fitted on factors (with or without interactions) into
-#' coefficient tables. 
+#' coefficient tables. Factor levels are not allowed to contain ":".
 #' 
 #' @param object An object of class lm.
 #' @param rebase Logical flag indicating if the coefficient tables (and intercept) should be 
@@ -25,10 +25,14 @@
 coefTables <- function(object, rebase = FALSE) {
   stopifnot(inherits(object, "lm"))
  
+  # Factor levels are not allowed to contain ":".
+  if (length(badLevels <- grep(":", unlist(object$xlevels), value = TRUE))) {
+    stop("':' not allowed in factor levels: ", paste(paste0("'", badLevels, "'"), collapse = ", "))
+  }
   out <- dummy.coef(object)
   refLevels <- as.data.frame(lapply(object$xlevels, `[[`, 1), check.names = FALSE)
   out[["(Intercept)"]] <- data.frame(effect = out[["(Intercept)"]], row.names = NULL)
-  
+
   for (nm in setdiff(names(out), "(Intercept)")) { # nm <- "Type:conc"
     xx <- out[[nm]] %>% 
       as.data.frame %>% 
@@ -54,6 +58,8 @@ coefTables <- function(object, rebase = FALSE) {
   class(out) <- "coefTable"
   out
 }
+
+utils::globalVariables("effect")
 
 #' Predicted values based on \code{coefTable} object.
 #' 

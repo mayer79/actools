@@ -1,8 +1,8 @@
-* using log directory 'C:/projects/actools/Release/actools.Rcheck'
-* using R version 3.5.3 (2019-03-11)
+* using log directory 'C:/Users/U118378/projects/actools/Release/actools.Rcheck'
+* using R version 3.5.2 (2018-12-20)
 * using platform: x86_64-w64-mingw32 (64-bit)
 * using session charset: ISO8859-1
-* using option '--as-cran'
+* using options '--no-manual --as-cran'
 * checking for file 'actools/DESCRIPTION' ... OK
 * checking extension type ... Package
 * this is package 'actools' version '1.0.0'
@@ -11,7 +11,7 @@
 * checking package dependencies ... OK
 * checking if this is a source package ... OK
 * checking if there is a namespace ... OK
-* checking for executable files ... OK
+* checking for .dll and .exe files ... OK
 * checking for hidden files and directories ... OK
 * checking for portable file names ... OK
 * checking whether package 'actools' can be installed ... OK
@@ -29,16 +29,11 @@
 * checking whether the package can be unloaded cleanly ... OK
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
-* checking loading without being on the library search path ... OK
 * checking dependencies in R code ... OK
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
-* checking R code for possible problems ... NOTE
-coefTables: no visible binding for global variable 'effect'
-predict.coefTable : fn: no visible binding for global variable 'effect'
-Undefined global functions or variables:
-  effect
+* checking R code for possible problems ... OK
 * checking Rd files ... OK
 * checking Rd metadata ... OK
 * checking Rd line widths ... OK
@@ -49,6 +44,5 @@ Undefined global functions or variables:
 * checking Rd contents ... OK
 * checking for unstated dependencies in examples ... OK
 * checking examples ... OK
-* checking PDF version of manual ... OK
 * DONE
-Status: 1 NOTE
+Status: OK

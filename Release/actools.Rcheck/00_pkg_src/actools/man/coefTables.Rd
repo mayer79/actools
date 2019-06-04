@@ -17,7 +17,7 @@ rebased so that reference levels of factors are associated with coefficients 0.}
 }
 \description{
 Turns an lm object fitted on factors (with or without interactions) into
-coefficient tables.
+coefficient tables. Factor levels are not allowed to contain ":".
 }
 \examples{
 CO2[["conc"]] <- factor(CO2[["conc"]])

@@ -47,6 +47,7 @@ build(pkg, binary = TRUE) # zip
 # Install the package (locally)
 install(pkg) # tar
 
+# The next three commands are for CRAN release only
 # check_rhub(pkg)
 check_win_devel(pkg)
 

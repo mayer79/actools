@@ -8,7 +8,7 @@ License: GPL(>= 3)
 Encoding: UTF-8
 LazyData: true
 Type: Package
-Date: 2019-06-02
+Date: 2019-06-04
 Imports: stats, magrittr, dplyr, tibble, tidyr
 Author: Michael Mayer [aut, cre, cph]
 Maintainer: Michael Mayer <mayermichael79@gmail.com>
